@@ -1,6 +1,8 @@
-1111111111
+111111111111111111
+
 #include <iostream>
 using namespace std;
+
 string xorOp(string a, string b) {
     string result = "";
 
@@ -13,6 +15,7 @@ string xorOp(string a, string b) {
 
     return result;
 }
+
 string crc(string data, string key) {
     int k = key.length();
 
@@ -32,6 +35,7 @@ string crc(string data, string key) {
 
     return temp;
 }
+
 int main() {
     string data, key = "1001";
 
@@ -49,6 +53,7 @@ int main() {
 
 
 222222222222222222
+
 #include <iostream>
 using namespace std;
 
@@ -79,14 +84,18 @@ int main() {
     cin >> bucketSize >> rate >> n;
 
     int packets[n];
+
     for (int i = 0; i < n; i++)
         cin >> packets[i];
+
     leakyBucket(bucketSize, rate, packets, n);
+
     return 0;
 }
 
 
-333333333333333aaa
+333333333333333333
+
 #include <iostream>
 using namespace std;
 
@@ -113,13 +122,16 @@ int main() {
     cin >> text >> key;
 
     string enc = encrypt(text, key);
-    cout << enc << endl;
 
+    cout << enc << endl;
     cout << decrypt(enc, key);
 
     return 0;
 }
-3333333333333bbbbbbbbb
+
+
+444444444444444444
+
 #include <iostream>
 using namespace std;
 
@@ -183,6 +195,32 @@ string encrypt(string text) {
     return ans;
 }
 
+string decrypt(string text) {
+    string ans = "";
+
+    for (int i = 0; i < text.length(); i += 2) {
+        int r1, c1, r2, c2;
+
+        findPos(text[i], r1, c1);
+        findPos(text[i + 1], r2, c2);
+
+        if (r1 == r2) {
+            ans += matrix[r1][(c1 + 4) % 5];
+            ans += matrix[r2][(c2 + 4) % 5];
+        }
+        else if (c1 == c2) {
+            ans += matrix[(r1 + 4) % 5][c1];
+            ans += matrix[(r2 + 4) % 5][c2];
+        }
+        else {
+            ans += matrix[r1][c2];
+            ans += matrix[r2][c1];
+        }
+    }
+
+    return ans;
+}
+
 int main() {
     string key, text;
 
@@ -190,12 +228,17 @@ int main() {
 
     createMatrix(key);
 
-    cout << encrypt(text);
+    string enc = encrypt(text);
+
+    cout << enc << endl;
+    cout << decrypt(enc);
 
     return 0;
 }
 
-4444444444444444
+
+555555555555555555
+
 #include <iostream>
 using namespace std;
 
@@ -210,17 +253,33 @@ string encrypt(string text, string key) {
     return ans;
 }
 
+string decrypt(string text, string key) {
+    string ans = "";
+
+    for (int i = 0; i < text.length(); i++) {
+        char ch = ((text[i] - 'a') - (key[i % key.length()] - 'a') + 26) % 26 + 'a';
+        ans += ch;
+    }
+
+    return ans;
+}
+
 int main() {
     string text, key;
 
     cin >> text >> key;
 
-    cout << encrypt(text, key);
+    string enc = encrypt(text, key);
+
+    cout << enc << endl;
+    cout << decrypt(enc, key);
 
     return 0;
 }
 
-555555555555555
+
+666666666666666666
+
 #include <iostream>
 using namespace std;
 
@@ -257,8 +316,8 @@ int main() {
 }
 
 
+777777777777777777
 
-6666666666666666666666666
 #include <iostream>
 using namespace std;
 
